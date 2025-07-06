@@ -66,15 +66,17 @@ export function Contact() {
   ]
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-blue-50 to-white">
+    <section id="contact" className="py-20 bg-gradient-to-br from-blue-50 to-white" aria-labelledby="contact-heading">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Get In Touch</h2>
+        <header className="text-center mb-16">
+          <h2 id="contact-heading" className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Get In Touch
+          </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Ready to transform your business? Contact us today to discuss your project requirements and discover how we
             can help you achieve your goals.
           </p>
-        </div>
+        </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
           {/* Contact Information */}
@@ -87,12 +89,19 @@ export function Contact() {
                 <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
                   <CardContent className="p-6">
                     <div className="flex items-center">
-                      <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mr-4">
+                      <div
+                        className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mr-4"
+                        aria-hidden="true"
+                      >
                         <IconComponent className="h-6 w-6 text-white" />
                       </div>
                       <div>
                         <h4 className="font-semibold text-gray-900 mb-1">{info.title}</h4>
-                        <a href={info.link} className="text-gray-600 hover:text-blue-600 transition-colors">
+                        <a
+                          href={info.link}
+                          className="text-gray-600 hover:text-blue-600 transition-colors"
+                          aria-label={`${info.title}: ${info.details}`}
+                        >
                           {info.details}
                         </a>
                       </div>
@@ -108,15 +117,15 @@ export function Contact() {
             <Card className="shadow-xl">
               <CardContent className="p-8">
                 {isSubmitted ? (
-                  <div className="text-center py-12">
-                    <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
+                  <div className="text-center py-12" role="alert" aria-live="polite">
+                    <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" aria-hidden="true" />
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">Thank You!</h3>
                     <p className="text-gray-600">
                       Your message has been sent successfully. We'll get back to you soon.
                     </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -131,6 +140,7 @@ export function Contact() {
                           onChange={handleInputChange}
                           className="w-full"
                           placeholder="Enter your full name"
+                          aria-describedby="name-error"
                         />
                       </div>
                       <div>
@@ -146,6 +156,7 @@ export function Contact() {
                           onChange={handleInputChange}
                           className="w-full"
                           placeholder="Enter your email address"
+                          aria-describedby="email-error"
                         />
                       </div>
                     </div>
@@ -178,6 +189,7 @@ export function Contact() {
                         rows={6}
                         className="w-full"
                         placeholder="Tell us about your project requirements..."
+                        aria-describedby="message-error"
                       />
                     </div>
 
@@ -185,15 +197,19 @@ export function Contact() {
                       type="submit"
                       disabled={isSubmitting}
                       className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white py-3 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                      aria-describedby={isSubmitting ? "submitting-status" : undefined}
                     >
                       {isSubmitting ? (
                         <div className="flex items-center justify-center">
-                          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                          Sending...
+                          <div
+                            className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"
+                            aria-hidden="true"
+                          ></div>
+                          <span id="submitting-status">Sending...</span>
                         </div>
                       ) : (
                         <div className="flex items-center justify-center">
-                          <Send className="mr-2 h-5 w-5" />
+                          <Send className="mr-2 h-5 w-5" aria-hidden="true" />
                           Send Message
                         </div>
                       )}
@@ -206,12 +222,12 @@ export function Contact() {
         </div>
 
         {/* Footer */}
-        <div className="mt-20 pt-8 border-t border-gray-200 text-center">
-          <p className="text-gray-600">
+        <footer className="mt-16 pt-6 border-t border-gray-200 text-center">
+          <p className="text-gray-600 text-sm">
             © 2024 MSS Solutions. All rights reserved. |
             <span className="ml-2">Transforming businesses through technology</span>
           </p>
-        </div>
+        </footer>
       </div>
     </section>
   )
