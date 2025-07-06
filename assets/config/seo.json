@@ -1,0 +1,61 @@
+{
+  "seo": {
+    "defaultMeta": {
+      "title": "MSS Solutions - Leading Technology Solutions Provider",
+      "description": "Transform your business with innovative technology solutions. Custom software development, cloud services, mobile apps, and digital transformation expertise.",
+      "keywords": "technology solutions, custom software development, cloud services, mobile app development, digital transformation, IT consulting, cybersecurity, business intelligence",
+      "author": "MSS Solutions",
+      "robots": "index, follow",
+      "viewport": "width=device-width, initial-scale=1"
+    },
+    "openGraph": {
+      "type": "website",
+      "locale": "en_US",
+      "siteName": "MSS Solutions",
+      "title": "MSS Solutions - Leading Technology Solutions Provider",
+      "description": "Transform your business with innovative technology solutions. Custom development, cloud services, and digital transformation expertise.",
+      "image": "/assets/images/og-image.jpg",
+      "imageAlt": "MSS Solutions - Technology Solutions Provider",
+      "url": "https://msssolutions.com"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "site": "@msssolutions",
+      "creator": "@msssolutions",
+      "title": "MSS Solutions - Leading Technology Solutions Provider",
+      "description": "Transform your business with innovative technology solutions. Custom development, cloud services, and digital transformation expertise.",
+      "image": "/assets/images/twitter-image.jpg"
+    },
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "MSS Solutions",
+      "description": "Leading technology solutions provider specializing in custom software development, cloud services, and digital transformation.",
+      "url": "https://msssolutions.com",
+      "logo": "https://msssolutions.com/assets/icons/logo.png",
+      "foundingDate": "2009",
+      "numberOfEmployees": "50-100",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 Business Ave",
+        "addressLocality": "Tech City",
+        "addressRegion": "TC",
+        "postalCode": "12345",
+        "addressCountry": "US"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-555-123-4567",
+        "contactType": "customer service",
+        "email": "info@msssolutions.com",
+        "availableLanguage": "English"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/mss-solutions",
+        "https://twitter.com/msssolutions",
+        "https://www.facebook.com/msssolutions",
+        "https://github.com/msssolutions"
+      ]
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "E-commerce Platform Modernization",
+      "client": "RetailCorp",
+      "industry": "Retail",
+      "description": "Complete modernization of legacy e-commerce platform with microservices architecture and cloud migration.",
+      "challenge": "Legacy monolithic system causing performance issues and limiting scalability during peak shopping seasons.",
+      "solution": "Migrated to microservices architecture on AWS with auto-scaling capabilities and implemented modern frontend with React.",
+      "results": [
+        "300% improvement in page load times",
+        "99.9% uptime during Black Friday",
+        "50% reduction in infrastructure costs",
+        "Ability to handle 10x traffic spikes"
+      ],
+      "technologies": ["React", "Node.js", "AWS", "Docker", "Kubernetes"],
+      "duration": "8 months",
+      "teamSize": 6,
+      "budget": "$250,000",
+      "images": ["/assets/images/projects/ecommerce-1.jpg", "/assets/images/projects/ecommerce-2.jpg"],
+      "featured": true
+    },
+    {
+      "id": 2,
+      "title": "Healthcare Management System",
+      "client": "MedTech Solutions",
+      "industry": "Healthcare",
+      "description": "HIPAA-compliant patient management system with real-time analytics and mobile access.",
+      "challenge": "Paper-based patient records causing inefficiencies and compliance issues.",
+      "solution": "Developed secure, cloud-based system with role-based access control and real-time patient monitoring.",
+      "results": [
+        "100% digital patient records",
+        "60% reduction in administrative time",
+        "HIPAA compliance achieved",
+        "Real-time patient monitoring"
+      ],
+      "technologies": ["Vue.js", "Python", "PostgreSQL", "Azure", "React Native"],
+      "duration": "12 months",
+      "teamSize": 8,
+      "budget": "$400,000",
+      "images": ["/assets/images/projects/healthcare-1.jpg", "/assets/images/projects/healthcare-2.jpg"],
+      "featured": true
+    },
+    {
+      "id": 3,
+      "title": "Financial Trading Platform",
+      "client": "InvestPro",
+      "industry": "Finance",
+      "description": "Real-time trading platform with advanced analytics and risk management features.",
+      "challenge": "Need for low-latency trading system with real-time market data processing.",
+      "solution": "Built high-performance trading platform with microsecond latency and advanced risk algorithms.",
+      "results": [
+        "Sub-millisecond trade execution",
+        "Real-time risk monitoring",
+        "99.99% system availability",
+        "Regulatory compliance"
+      ],
+      "technologies": ["Java", "Spring Boot", "Redis", "Apache Kafka", "React"],
+      "duration": "10 months",
+      "teamSize": 10,
+      "budget": "$600,000",
+      "images": ["/assets/images/projects/trading-1.jpg", "/assets/images/projects/trading-2.jpg"],
+      "featured": false
+    }
+  ]
+}

@@ -5,9 +5,11 @@ import { Values } from "@/components/values"
 import { About } from "@/components/about"
 import { Partners } from "@/components/partners"
 import { Products } from "@/components/products"
-import { Testimonials } from "@/components/testimonials"
+import { ClientsSay } from "@/components/clients-say"
 import { Contact } from "@/components/contact"
 import { Navigation } from "@/components/navigation"
+import { WhatsAppWidget } from "@/components/whatsapp-widget"
+import { AnimatedSection } from "@/components/animated-section"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -21,16 +23,61 @@ export default function Home() {
     <>
       <Navigation />
       <main role="main">
-        <Hero />
-        <Services />
-        <Process />
-        <Values />
-        <About />
-        <Partners />
-        <Products />
-        <Testimonials />
-        <Contact />
+        <section id="home">
+          <AnimatedSection animation="fadeInUp">
+            <Hero />
+          </AnimatedSection>
+        </section>
+
+        <section id="services">
+          <AnimatedSection animation="fadeInUp">
+            <Services />
+          </AnimatedSection>
+        </section>
+
+        <section id="process">
+          <AnimatedSection animation="fadeInUp">
+            <Process />
+          </AnimatedSection>
+        </section>
+
+        <section id="values">
+          <AnimatedSection animation="fadeInUp">
+            <Values />
+          </AnimatedSection>
+        </section>
+
+        <section id="about">
+          <AnimatedSection animation="fadeInUp">
+            <About />
+          </AnimatedSection>
+        </section>
+
+        <section id="partners">
+          <AnimatedSection animation="fadeInUp">
+            <Partners />
+          </AnimatedSection>
+        </section>
+
+        <section id="products">
+          <AnimatedSection animation="fadeInUp">
+            <Products />
+          </AnimatedSection>
+        </section>
+
+        <section id="clients">
+          <AnimatedSection animation="fadeInUp">
+            <ClientsSay />
+          </AnimatedSection>
+        </section>
+
+        <section id="contact">
+          <AnimatedSection animation="fadeInUp">
+            <Contact />
+          </AnimatedSection>
+        </section>
       </main>
+      <WhatsAppWidget />
     </>
   )
 }

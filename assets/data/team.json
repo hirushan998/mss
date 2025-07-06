@@ -1,0 +1,56 @@
+{
+  "team": [
+    {
+      "id": 1,
+      "name": "John Smith",
+      "position": "Chief Technology Officer",
+      "department": "Leadership",
+      "bio": "With over 15 years of experience in enterprise software development, John leads our technical vision and strategy.",
+      "expertise": ["Enterprise Architecture", "Cloud Computing", "Team Leadership"],
+      "education": "MS Computer Science, Stanford University",
+      "certifications": ["AWS Solutions Architect", "Azure Expert"],
+      "avatar": "/assets/images/team/john-smith.jpg",
+      "linkedin": "https://linkedin.com/in/johnsmith",
+      "github": "https://github.com/johnsmith"
+    },
+    {
+      "id": 2,
+      "name": "Sarah Davis",
+      "position": "Lead Frontend Developer",
+      "department": "Development",
+      "bio": "Sarah specializes in creating beautiful, responsive user interfaces using modern frontend technologies.",
+      "expertise": ["React", "Vue.js", "UI/UX Design", "Performance Optimization"],
+      "education": "BS Computer Science, MIT",
+      "certifications": ["Google UX Design", "React Certified Developer"],
+      "avatar": "/assets/images/team/sarah-davis.jpg",
+      "linkedin": "https://linkedin.com/in/sarahdavis",
+      "github": "https://github.com/sarahdavis"
+    },
+    {
+      "id": 3,
+      "name": "Michael Rodriguez",
+      "position": "Senior Backend Developer",
+      "department": "Development",
+      "bio": "Michael builds robust, scalable backend systems and APIs that power our client applications.",
+      "expertise": ["Node.js", "Python", "Database Design", "API Development"],
+      "education": "MS Software Engineering, Carnegie Mellon",
+      "certifications": ["AWS Developer Associate", "MongoDB Certified"],
+      "avatar": "/assets/images/team/michael-rodriguez.jpg",
+      "linkedin": "https://linkedin.com/in/michaelrodriguez",
+      "github": "https://github.com/michaelrodriguez"
+    },
+    {
+      "id": 4,
+      "name": "Emily Chen",
+      "position": "DevOps Engineer",
+      "department": "Infrastructure",
+      "bio": "Emily ensures our applications run smoothly in production with automated deployment and monitoring.",
+      "expertise": ["Docker", "Kubernetes", "CI/CD", "Infrastructure as Code"],
+      "education": "BS Information Systems, UC Berkeley",
+      "certifications": ["Kubernetes Administrator", "Terraform Associate"],
+      "avatar": "/assets/images/team/emily-chen.jpg",
+      "linkedin": "https://linkedin.com/in/emilychen",
+      "github": "https://github.com/emilychen"
+    }
+  ]
+}

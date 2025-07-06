@@ -1,0 +1,49 @@
+{
+  "company": {
+    "name": "MSS Solutions",
+    "tagline": "Transforming businesses through technology",
+    "founded": 2009,
+    "headquarters": "Tech City, TC",
+    "employees": "50-100",
+    "mission": "To deliver exceptional technology solutions that drive business success, foster innovation, and create lasting value for our clients through expertise, dedication, and unwavering commitment to excellence.",
+    "vision": "To be the leading technology partner that empowers businesses worldwide to achieve digital transformation and sustainable growth through innovative, reliable, and scalable solutions.",
+    "values": [
+      {
+        "title": "Innovation",
+        "description": "We embrace cutting-edge technologies and creative solutions to solve complex business challenges."
+      },
+      {
+        "title": "Excellence",
+        "description": "We maintain the highest standards in everything we do, from code quality to customer service."
+      },
+      {
+        "title": "Integrity",
+        "description": "We build trust through transparency, honesty, and ethical business practices."
+      },
+      {
+        "title": "Collaboration",
+        "description": "We work closely with our clients as partners to achieve shared success."
+      }
+    ],
+    "stats": {
+      "clients": 500,
+      "experience": 15,
+      "countries": 25,
+      "successRate": 98,
+      "projectsCompleted": 1200,
+      "teamMembers": 75
+    },
+    "contact": {
+      "email": "info@msssolutions.com",
+      "phone": "+1 (555) 123-4567",
+      "address": "123 Business Ave, Tech City, TC 12345",
+      "whatsapp": "+1234567890"
+    },
+    "social": {
+      "linkedin": "https://www.linkedin.com/company/mss-solutions",
+      "twitter": "https://twitter.com/msssolutions",
+      "facebook": "https://www.facebook.com/msssolutions",
+      "github": "https://github.com/msssolutions"
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "testimonials": [
+    {
+      "id": 1,
+      "quote": "MSS Solutions transformed our entire digital infrastructure. Their expertise in cloud migration saved us 40% in operational costs while improving our system performance dramatically.",
+      "author": "Sarah Johnson",
+      "position": "CTO",
+      "company": "TechCorp Industries",
+      "logo": "TC",
+      "rating": 5,
+      "gradient": "from-blue-500 to-cyan-500",
+      "industry": "Technology",
+      "projectType": "Cloud Migration",
+      "duration": "6 months",
+      "results": ["40% cost reduction", "99.9% uptime", "3x faster performance"]
+    },
+    {
+      "id": 2,
+      "quote": "The custom software solution they developed for us has revolutionized our workflow. What used to take hours now takes minutes. Exceptional quality and support.",
+      "author": "Michael Chen",
+      "position": "CEO",
+      "company": "Global Dynamics",
+      "logo": "GD",
+      "rating": 5,
+      "gradient": "from-purple-500 to-pink-500",
+      "industry": "Manufacturing",
+      "projectType": "Custom Software",
+      "duration": "8 months",
+      "results": ["80% time savings", "50% error reduction", "ROI in 6 months"]
+    },
+    {
+      "id": 3,
+      "quote": "Working with MSS Solutions was a game-changer. Their team's professionalism and technical expertise helped us achieve our digital transformation goals ahead of schedule.",
+      "author": "Emily Rodriguez",
+      "position": "Operations Director",
+      "company": "InnovateCorp",
+      "logo": "IC",
+      "rating": 5,
+      "gradient": "from-green-500 to-emerald-500",
+      "industry": "Healthcare",
+      "projectType": "Digital Transformation",
+      "duration": "12 months",
+      "results": ["100% digital workflow", "60% efficiency gain", "Enhanced patient care"]
+    },
+    {
+      "id": 4,
+      "quote": "Their mobile app development exceeded our expectations. The user experience is phenomenal, and our customer engagement has increased by 300% since launch.",
+      "author": "David Park",
+      "position": "Product Manager",
+      "company": "NextGen Solutions",
+      "logo": "NG",
+      "rating": 5,
+      "gradient": "from-orange-500 to-red-500",
+      "industry": "E-commerce",
+      "projectType": "Mobile App Development",
+      "duration": "4 months",
+      "results": ["300% engagement increase", "4.8 app store rating", "1M+ downloads"]
+    },
+    {
+      "id": 5,
+      "quote": "MSS Solutions delivered a robust cybersecurity framework that gives us complete peace of mind. Their proactive approach to security is unmatched in the industry.",
+      "author": "Lisa Thompson",
+      "position": "CISO",
+      "company": "SecureFlow Inc",
+      "logo": "SF",
+      "rating": 5,
+      "gradient": "from-indigo-500 to-purple-500",
+      "industry": "Financial Services",
+      "projectType": "Cybersecurity",
+      "duration": "3 months",
+      "results": ["Zero security incidents", "100% compliance", "24/7 monitoring"]
+    }
+  ]
+}

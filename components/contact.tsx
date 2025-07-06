@@ -66,7 +66,7 @@ export function Contact() {
   ]
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-blue-50 to-white" aria-labelledby="contact-heading">
+    <section id="contact" className="pt-20  pb-5 bg-gradient-to-br from-blue-50 to-white" aria-labelledby="contact-heading">
       <div className="container mx-auto px-4">
         <header className="text-center mb-16">
           <h2 id="contact-heading" className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -224,7 +224,8 @@ export function Contact() {
         {/* Footer */}
         <footer className="mt-16 pt-6 border-t border-gray-200 text-center">
           <p className="text-gray-600 text-sm">
-            © 2024 MSS Solutions. All rights reserved. |
+            © 2025 MSS Solutions. All rights reserved. |
+            <span className="ml-2">Developed by HDz. Transforming businesses through technology</span>
             <span className="ml-2">Transforming businesses through technology</span>
           </p>
         </footer>

@@ -1,0 +1,70 @@
+{
+  "partners": [
+    {
+      "id": 1,
+      "name": "Microsoft",
+      "logo": "MS",
+      "description": "Microsoft technology partner",
+      "category": "Cloud & Productivity",
+      "partnership": "Gold Partner",
+      "since": 2015,
+      "certifications": ["Azure Expert", "Microsoft 365 Certified"],
+      "website": "https://microsoft.com"
+    },
+    {
+      "id": 2,
+      "name": "Amazon Web Services",
+      "logo": "AWS",
+      "description": "AWS cloud solutions partner",
+      "category": "Cloud Infrastructure",
+      "partnership": "Advanced Consulting Partner",
+      "since": 2014,
+      "certifications": ["Solutions Architect", "DevOps Engineer"],
+      "website": "https://aws.amazon.com"
+    },
+    {
+      "id": 3,
+      "name": "Google Cloud Platform",
+      "logo": "GCP",
+      "description": "Google Cloud certified partner",
+      "category": "Cloud & AI",
+      "partnership": "Premier Partner",
+      "since": 2016,
+      "certifications": ["Cloud Architect", "Data Engineer"],
+      "website": "https://cloud.google.com"
+    },
+    {
+      "id": 4,
+      "name": "IBM",
+      "logo": "IBM",
+      "description": "IBM enterprise solutions partner",
+      "category": "Enterprise Software",
+      "partnership": "Business Partner",
+      "since": 2013,
+      "certifications": ["Watson AI", "Cloud Pak"],
+      "website": "https://ibm.com"
+    },
+    {
+      "id": 5,
+      "name": "Oracle",
+      "logo": "ORC",
+      "description": "Oracle database solutions partner",
+      "category": "Database & Analytics",
+      "partnership": "Platinum Partner",
+      "since": 2012,
+      "certifications": ["Database Administrator", "Cloud Infrastructure"],
+      "website": "https://oracle.com"
+    },
+    {
+      "id": 6,
+      "name": "SAP",
+      "logo": "SAP",
+      "description": "SAP enterprise software partner",
+      "category": "Enterprise Resource Planning",
+      "partnership": "Silver Partner",
+      "since": 2017,
+      "certifications": ["S/4HANA", "SuccessFactors"],
+      "website": "https://sap.com"
+    }
+  ]
+}
