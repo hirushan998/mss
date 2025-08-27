@@ -3,28 +3,29 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent } from "@/components/ui/card"
+import { Label } from "@/components/ui/label"
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle, Globe, MessageSquare } from "lucide-react"
 
 export function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     company: "",
+    phone: "",
+    service: "",
     message: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
+    setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -40,7 +41,14 @@ export function Contact() {
     // Reset form after 3 seconds
     setTimeout(() => {
       setIsSubmitted(false)
-      setFormData({ name: "", email: "", company: "", message: "" })
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        phone: "",
+        service: "",
+        message: "",
+      })
     }, 3000)
   }
 
@@ -48,89 +56,75 @@ export function Contact() {
     {
       icon: Mail,
       title: "Email Us",
-      details: "info@msssolutions.com",
-      link: "mailto:info@msssolutions.com",
+      details: ["info@mss-solutions.com", "support@mss-solutions.com"],
+      color: "text-blue-600",
     },
     {
       icon: Phone,
       title: "Call Us",
-      details: "+1 (555) 123-4567",
-      link: "tel:+15551234567",
+      details: ["+1 (555) 123-4567", "+1 (555) 987-6543"],
+      color: "text-green-600",
     },
     {
       icon: MapPin,
       title: "Visit Us",
-      details: "123 Business Ave, Tech City, TC 12345",
-      link: "#",
+      details: ["123 Business Ave", "Suite 100, City, State 12345"],
+      color: "text-purple-600",
+    },
+    {
+      icon: Clock,
+      title: "Business Hours",
+      details: ["Mon - Fri: 9:00 AM - 6:00 PM", "Sat: 10:00 AM - 4:00 PM"],
+      color: "text-orange-600",
     },
   ]
 
+  const globalOffices = [
+    { city: "New York", country: "USA", timezone: "EST" },
+    { city: "London", country: "UK", timezone: "GMT" },
+    { city: "Singapore", country: "Singapore", timezone: "SGT" },
+    { city: "Sydney", country: "Australia", timezone: "AEST" },
+  ]
+
   return (
-    <section id="contact" className="pt-20  pb-5 bg-gradient-to-br from-blue-50 to-white" aria-labelledby="contact-heading">
-      <div className="container mx-auto px-4">
-        <header className="text-center mb-16">
-          <h2 id="contact-heading" className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+    <section id="contact" className="py-20 bg-gray-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <Badge variant="outline" className="mb-4 text-blue-600 border-blue-600">
             Get In Touch
-          </h2>
+          </Badge>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Let's Start Your Project</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Ready to transform your business? Contact us today to discuss your project requirements and discover how we
-            can help you achieve your goals.
+            Ready to transform your business with technology? Contact us today for a free consultation and discover how
+            we can help you achieve your goals.
           </p>
-        </header>
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
-          {/* Contact Information */}
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
-
-            {contactInfo.map((info, index) => {
-              const IconComponent = info.icon
-              return (
-                <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
-                  <CardContent className="p-6">
-                    <div className="flex items-center">
-                      <div
-                        className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mr-4"
-                        aria-hidden="true"
-                      >
-                        <IconComponent className="h-6 w-6 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">{info.title}</h4>
-                        <a
-                          href={info.link}
-                          className="text-gray-600 hover:text-blue-600 transition-colors"
-                          aria-label={`${info.title}: ${info.details}`}
-                        >
-                          {info.details}
-                        </a>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              )
-            })}
-          </div>
-
+        <div className="grid lg:grid-cols-3 gap-12">
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <Card className="shadow-xl">
-              <CardContent className="p-8">
+            <Card className="shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-2xl font-bold text-gray-900 flex items-center">
+                  <MessageSquare className="h-6 w-6 text-blue-600 mr-2" />
+                  Send Us a Message
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
                 {isSubmitted ? (
-                  <div className="text-center py-12" role="alert" aria-live="polite">
-                    <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" aria-hidden="true" />
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Thank You!</h3>
-                    <p className="text-gray-600">
-                      Your message has been sent successfully. We'll get back to you soon.
-                    </p>
+                  <div className="text-center py-12">
+                    <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
+                    <p className="text-gray-600">Thank you for contacting us. We'll get back to you within 24 hours.</p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid sm:grid-cols-2 gap-6">
                       <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                        <Label htmlFor="name" className="text-sm font-medium text-gray-700">
                           Full Name *
-                        </label>
+                        </Label>
                         <Input
                           id="name"
                           name="name"
@@ -138,15 +132,14 @@ export function Contact() {
                           required
                           value={formData.name}
                           onChange={handleInputChange}
-                          className="w-full"
-                          placeholder="Enter your full name"
-                          aria-describedby="name-error"
+                          className="mt-1"
+                          placeholder="John Doe"
                         />
                       </div>
                       <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                        <Label htmlFor="email" className="text-sm font-medium text-gray-700">
                           Email Address *
-                        </label>
+                        </Label>
                         <Input
                           id="email"
                           name="email"
@@ -154,64 +147,96 @@ export function Contact() {
                           required
                           value={formData.email}
                           onChange={handleInputChange}
-                          className="w-full"
-                          placeholder="Enter your email address"
-                          aria-describedby="email-error"
+                          className="mt-1"
+                          placeholder="john@company.com"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid sm:grid-cols-2 gap-6">
+                      <div>
+                        <Label htmlFor="company" className="text-sm font-medium text-gray-700">
+                          Company
+                        </Label>
+                        <Input
+                          id="company"
+                          name="company"
+                          type="text"
+                          value={formData.company}
+                          onChange={handleInputChange}
+                          className="mt-1"
+                          placeholder="Your Company"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="phone" className="text-sm font-medium text-gray-700">
+                          Phone Number
+                        </Label>
+                        <Input
+                          id="phone"
+                          name="phone"
+                          type="tel"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          className="mt-1"
+                          placeholder="+1 (555) 123-4567"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
-                        Company Name
-                      </label>
-                      <Input
-                        id="company"
-                        name="company"
-                        type="text"
-                        value={formData.company}
+                      <Label htmlFor="service" className="text-sm font-medium text-gray-700">
+                        Service Interested In
+                      </Label>
+                      <select
+                        id="service"
+                        name="service"
+                        value={formData.service}
                         onChange={handleInputChange}
-                        className="w-full"
-                        placeholder="Enter your company name"
-                      />
+                        className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      >
+                        <option value="">Select a service</option>
+                        <option value="software-development">Software Development</option>
+                        <option value="web-development">Web Development</option>
+                        <option value="mobile-development">Mobile Development</option>
+                        <option value="data-solutions">Data Solutions</option>
+                        <option value="cybersecurity">Cybersecurity</option>
+                        <option value="cloud-services">Cloud Services</option>
+                        <option value="consulting">Consulting</option>
+                      </select>
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                        Message *
-                      </label>
+                      <Label htmlFor="message" className="text-sm font-medium text-gray-700">
+                        Project Details *
+                      </Label>
                       <Textarea
                         id="message"
                         name="message"
                         required
                         value={formData.message}
                         onChange={handleInputChange}
-                        rows={6}
-                        className="w-full"
-                        placeholder="Tell us about your project requirements..."
-                        aria-describedby="message-error"
+                        rows={5}
+                        className="mt-1"
+                        placeholder="Tell us about your project requirements, timeline, and any specific needs..."
                       />
                     </div>
 
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white py-3 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                      aria-describedby={isSubmitting ? "submitting-status" : undefined}
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? (
-                        <div className="flex items-center justify-center">
-                          <div
-                            className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"
-                            aria-hidden="true"
-                          ></div>
-                          <span id="submitting-status">Sending...</span>
-                        </div>
+                        <>
+                          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                          Sending Message...
+                        </>
                       ) : (
-                        <div className="flex items-center justify-center">
-                          <Send className="mr-2 h-5 w-5" aria-hidden="true" />
+                        <>
                           Send Message
-                        </div>
+                          <Send className="ml-2 h-5 w-5" />
+                        </>
                       )}
                     </Button>
                   </form>
@@ -219,16 +244,66 @@ export function Contact() {
               </CardContent>
             </Card>
           </div>
-        </div>
 
-        {/* Footer */}
-        <footer className="mt-16 pt-6 border-t border-gray-200 text-center">
-          <p className="text-gray-600 text-sm">
-            © 2025 MSS Solutions. All rights reserved. |
-            <span className="ml-2">Developed by HDz. Transforming businesses through technology</span>
-            <span className="ml-2">Transforming businesses through technology</span>
-          </p>
-        </footer>
+          {/* Contact Information */}
+          <div className="space-y-8">
+            {/* Contact Details */}
+            <div className="space-y-6">
+              {contactInfo.map((info, index) => {
+                const IconComponent = info.icon
+                return (
+                  <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+                    <CardContent className="p-6">
+                      <div className="flex items-start space-x-4">
+                        <div
+                          className={`w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0`}
+                        >
+                          <IconComponent className={`h-5 w-5 ${info.color}`} />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900 mb-2">{info.title}</h3>
+                          {info.details.map((detail, detailIndex) => (
+                            <p key={detailIndex} className="text-gray-600 text-sm">
+                              {detail}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                )
+              })}
+            </div>
+
+            {/* Global Presence */}
+            <Card className="hover:shadow-lg transition-shadow duration-300">
+              <CardHeader>
+                <CardTitle className="text-lg font-semibold text-gray-900 flex items-center">
+                  <Globe className="h-5 w-5 text-blue-600 mr-2" />
+                  Global Presence
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {globalOffices.map((office, index) => (
+                    <div
+                      key={index}
+                      className="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0"
+                    >
+                      <div>
+                        <div className="font-medium text-gray-900">{office.city}</div>
+                        <div className="text-sm text-gray-600">{office.country}</div>
+                      </div>
+                      <Badge variant="outline" className="text-xs">
+                        {office.timezone}
+                      </Badge>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </div>
     </section>
   )

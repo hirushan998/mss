@@ -1,51 +1,31 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Menu } from "lucide-react"
-
-const navigationItems = [
-  { name: "Home", href: "#home" },
-  { name: "Services", href: "#services" },
-  { name: "Process", href: "#process" },
-  { name: "Values", href: "#values" },
-  { name: "About", href: "#about" },
-  { name: "Partners", href: "#partners" },
-  { name: "Products", href: "#products" },
-  { name: "Clients", href: "#clients" },
-  { name: "Contact", href: "#contact" },
-]
+import Image from "next/image"
 
 export function Navigation() {
-  const [activeSection, setActiveSection] = useState("home")
   const [isOpen, setIsOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-            setActiveSection(entry.target.id)
-          }
-        })
-      },
-      {
-        threshold: 0.5,
-        rootMargin: "-80px 0px -80px 0px", // Account for fixed header
-      },
-    )
-
-    // Observe all sections
-    const sections = document.querySelectorAll("section[id]")
-    sections.forEach((section) => observer.observe(section))
-
-    return () => {
-      sections.forEach((section) => observer.unobserve(section))
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
     }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const handleNavClick = (href: string) => {
+  const navItems = [
+    { name: "Home", href: "#home" },
+    { name: "Services", href: "#services" },
+    { name: "About", href: "#about" },
+    { name: "Products", href: "#products" },
+    { name: "Contact", href: "#contact" },
+  ]
+
+  const scrollToSection = (href: string) => {
     const element = document.querySelector(href)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
@@ -54,69 +34,82 @@ export function Navigation() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg" : "bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <a href="#home" className="text-2xl font-bold text-blue-600">
-              MSS Solutions
-            </a>
+          <div className="flex items-center">
+            <button
+              onClick={() => scrollToSection("#home")}
+              className="flex items-center transition-transform duration-300 hover:scale-105"
+            >
+              <Image
+                src="/mss-logo.png"
+                alt="MSS - Millennium Sourcing Solutions"
+                width={120}
+                height={40}
+                className="h-8 lg:h-10 w-auto"
+                priority
+              />
+            </button>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              {navigationItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => handleNavClick(item.href)}
-                  className={`relative px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:text-blue-600 ${
-                    activeSection === item.href.substring(1) ? "text-blue-600 font-semibold" : "text-gray-700"
-                  }`}
-                >
-                  {item.name}
-                  {activeSection === item.href.substring(1) && (
-                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-600 rounded-full"></span>
-                  )}
-                </button>
-              ))}
-            </div>
+          <div className="hidden md:flex space-x-8">
+            {navItems.map((item) => (
+              <button
+                key={item.name}
+                onClick={() => scrollToSection(item.href)}
+                className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                  isScrolled ? "text-gray-700 hover:text-blue-600" : "text-white hover:text-blue-300"
+                }`}
+              >
+                {item.name}
+                <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-blue-600 scale-x-0 transition-transform duration-300 hover:scale-x-100"></span>
+              </button>
+            ))}
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Menu className="h-6 w-6" />
-                  <span className="sr-only">Open menu</span>
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-                <div className="flex flex-col space-y-4 mt-8">
-                  <div className="flex items-center justify-between mb-8">
-                    <span className="text-2xl font-bold text-blue-600">MSS Solutions</span>
-                  </div>
-                  {navigationItems.map((item) => (
-                    <button
-                      key={item.name}
-                      onClick={() => handleNavClick(item.href)}
-                      className={`text-left px-4 py-3 rounded-lg text-lg font-medium transition-all duration-200 ${
-                        activeSection === item.href.substring(1)
-                          ? "bg-blue-50 text-blue-600 font-semibold"
-                          : "text-gray-700 hover:bg-gray-50 hover:text-blue-600"
-                      }`}
-                    >
-                      {item.name}
-                    </button>
-                  ))}
-                </div>
-              </SheetContent>
-            </Sheet>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsOpen(!isOpen)}
+              className={`transition-colors duration-300 ${
+                isScrolled ? "text-gray-800 hover:text-blue-600" : "text-white hover:text-blue-300"
+              }`}
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
           </div>
         </div>
-      </nav>
-    </header>
+
+        {/* Mobile Navigation */}
+        <div
+          className={`md:hidden transition-all duration-300 overflow-hidden ${
+            isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="bg-white/95 backdrop-blur-md rounded-lg mt-2 shadow-lg border">
+            <div className="px-4 py-6 space-y-4">
+              {navItems.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.href)}
+                  className="block w-full text-left px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-all duration-200 transform hover:translate-x-2"
+                >
+                  {item.name}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
   )
 }

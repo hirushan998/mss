@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Inter, Poppins } from "next/font/google"
 import "./globals.css"
 
 const inter = Inter({
@@ -9,36 +9,41 @@ const inter = Inter({
   variable: "--font-inter",
 })
 
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-poppins",
+})
+
 export const metadata: Metadata = {
-  title: "MSS Solutions - Leading Technology Solutions Provider | Custom Software Development",
+  title: "Millennium Sourcing Solutions - Global Engineering & Import Solutions",
   description:
-    "MSS Solutions delivers innovative technology solutions including custom software development, cloud services, mobile apps, and digital transformation. 15+ years experience serving 500+ clients globally.",
-  keywords:
-    "technology solutions, custom software development, cloud services, mobile app development, digital transformation, IT consulting, cybersecurity, business intelligence, MSS Solutions",
-  authors: [{ name: "MSS Solutions" }],
-  creator: "MSS Solutions",
-  publisher: "MSS Solutions",
+    "Leading provider of engineering solutions, global sourcing, import consultancy, and outsourcing services. Your trusted partner for business excellence.",
+  keywords: "engineering solutions, global sourcing, import consultancy, outsourcing, millennium sourcing solutions",
+  authors: [{ name: "Millennium Sourcing Solutions" }],
+  creator: "Millennium Sourcing Solutions",
+  publisher: "Millennium Sourcing Solutions",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://msssolutions.com"),
+  metadataBase: new URL("https://millenniumsourcingsolutions.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "MSS Solutions - Leading Technology Solutions Provider",
+    title: "Millennium Sourcing Solutions - Global Engineering & Import Solutions",
     description:
-      "Transform your business with innovative technology solutions. Custom development, cloud services, and digital transformation expertise.",
-    url: "https://msssolutions.com",
-    siteName: "MSS Solutions",
+      "Transform your business with innovative engineering solutions. Global sourcing, import consultancy, and outsourcing expertise.",
+    url: "https://millenniumsourcingsolutions.com",
+    siteName: "Millennium Sourcing Solutions",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "MSS Solutions - Technology Solutions Provider",
+        alt: "Millennium Sourcing Solutions - Engineering Solutions Provider",
       },
     ],
     locale: "en_US",
@@ -46,11 +51,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "MSS Solutions - Leading Technology Solutions Provider",
+    title: "Millennium Sourcing Solutions - Global Engineering & Import Solutions",
     description:
-      "Transform your business with innovative technology solutions. Custom development, cloud services, and digital transformation expertise.",
+      "Transform your business with innovative engineering solutions. Global sourcing, import consultancy, and outsourcing expertise.",
     images: ["/twitter-image.jpg"],
-    creator: "@msssolutions",
+    creator: "@millenniumsourcingsolutions",
   },
   robots: {
     index: true,
@@ -68,7 +73,7 @@ export const metadata: Metadata = {
     yandex: "your-yandex-verification-code",
     yahoo: "your-yahoo-verification-code",
   },
-    generator: 'v0.dev'
+    generator: 'v0.app'
 }
 
 export default function RootLayout({
@@ -77,7 +82,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${poppins.variable} scroll-smooth`}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -93,16 +98,16 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "MSS Solutions",
+              name: "Millennium Sourcing Solutions",
               description:
-                "Leading technology solutions provider specializing in custom software development, cloud services, and digital transformation.",
-              url: "https://msssolutions.com",
-              logo: "https://msssolutions.com/logo.png",
+                "Leading provider of engineering solutions, global sourcing, import consultancy, and outsourcing services.",
+              url: "https://millenniumsourcingsolutions.com",
+              logo: "https://millenniumsourcingsolutions.com/logo.png",
               contactPoint: {
                 "@type": "ContactPoint",
                 telephone: "+1-555-123-4567",
                 contactType: "customer service",
-                email: "info@msssolutions.com",
+                email: "info@millenniumsourcingsolutions.com",
                 availableLanguage: "English",
               },
               address: {
@@ -116,37 +121,37 @@ export default function RootLayout({
               foundingDate: "2009",
               numberOfEmployees: "50-100",
               sameAs: [
-                "https://www.linkedin.com/company/mss-solutions",
-                "https://twitter.com/msssolutions",
-                "https://www.facebook.com/msssolutions",
+                "https://www.linkedin.com/company/millennium-sourcing-solutions",
+                "https://twitter.com/millenniumsourcingsolutions",
+                "https://www.facebook.com/millenniumsourcingsolutions",
               ],
               service: [
                 {
                   "@type": "Service",
-                  name: "Custom Software Development",
-                  description: "Tailored software solutions built to meet specific business requirements",
+                  name: "Engineering Solutions",
+                  description: "Tailored engineering solutions built to meet specific business requirements",
                 },
                 {
                   "@type": "Service",
-                  name: "Cloud Solutions",
-                  description: "Scalable cloud infrastructure and migration services",
+                  name: "Global Sourcing",
+                  description: "Efficient global sourcing services for your business needs",
                 },
                 {
                   "@type": "Service",
-                  name: "Mobile App Development",
-                  description: "Native and cross-platform mobile applications",
+                  name: "Import Consultancy",
+                  description: "Expert import consultancy services for seamless international trade",
                 },
                 {
                   "@type": "Service",
-                  name: "Cybersecurity Services",
-                  description: "Advanced cybersecurity solutions and compliance management",
+                  name: "Outsourcing Services",
+                  description: "Outsourcing solutions to enhance your business operations",
                 },
               ],
             }),
           }}
         />
       </head>
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${poppins.className} antialiased`}>{children}</body>
     </html>
   )
 }

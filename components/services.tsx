@@ -1,119 +1,143 @@
 "use client"
 
-import { Code, Database, Cloud, Shield, Smartphone, BarChart3 } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
-import { useEffect, useRef, useState } from "react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Code, Database, Globe, Smartphone, Shield, Zap, ArrowRight, CheckCircle } from "lucide-react"
 
 export function Services() {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
-
   const services = [
     {
       icon: Code,
-      title: "Custom Development",
-      description: "Tailored software solutions built to meet your specific business requirements and objectives.",
-      color: "from-blue-500 to-blue-600",
+      title: "Software Development",
+      description: "Custom software solutions tailored to your business needs",
+      features: ["Web Applications", "Desktop Software", "API Development", "System Integration"],
+      featured: true,
     },
     {
-      icon: Database,
-      title: "Data Management",
-      description:
-        "Comprehensive data solutions including storage, processing, and analytics for informed decision-making.",
-      color: "from-green-500 to-green-600",
-    },
-    {
-      icon: Cloud,
-      title: "Cloud Solutions",
-      description: "Scalable cloud infrastructure and migration services to optimize your business operations.",
-      color: "from-purple-500 to-purple-600",
-    },
-    {
-      icon: Shield,
-      title: "Security Services",
-      description: "Advanced cybersecurity solutions to protect your digital assets and ensure compliance.",
-      color: "from-red-500 to-red-600",
+      icon: Globe,
+      title: "Web Development",
+      description: "Modern, responsive websites that drive results",
+      features: ["Responsive Design", "E-commerce", "CMS Development", "SEO Optimization"],
+      featured: false,
     },
     {
       icon: Smartphone,
       title: "Mobile Development",
-      description: "Native and cross-platform mobile applications that deliver exceptional user experiences.",
-      color: "from-orange-500 to-orange-600",
+      description: "Native and cross-platform mobile applications",
+      features: ["iOS Development", "Android Development", "React Native", "Flutter"],
+      featured: true,
     },
     {
-      icon: BarChart3,
-      title: "Business Intelligence",
-      description: "Transform your data into actionable insights with our advanced analytics and reporting tools.",
-      color: "from-cyan-500 to-cyan-600",
+      icon: Database,
+      title: "Data Solutions",
+      description: "Comprehensive data management and analytics",
+      features: ["Database Design", "Data Migration", "Analytics", "Business Intelligence"],
+      featured: false,
+    },
+    {
+      icon: Shield,
+      title: "Cybersecurity",
+      description: "Protect your business with advanced security solutions",
+      features: ["Security Audits", "Penetration Testing", "Compliance", "Risk Assessment"],
+      featured: false,
+    },
+    {
+      icon: Zap,
+      title: "Cloud Services",
+      description: "Scalable cloud infrastructure and migration services",
+      features: ["Cloud Migration", "DevOps", "Infrastructure", "Monitoring"],
+      featured: true,
     },
   ]
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.2 },
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
     }
-
-    return () => observer.disconnect()
-  }, [])
+  }
 
   return (
-    <section
-      ref={sectionRef}
-      id="services"
-      className="py-20 bg-gray-50 overflow-hidden"
-      aria-labelledby="services-heading"
-    >
-      <div className="container mx-auto px-4">
-        <header
-          className={`text-center mb-16 transform transition-all duration-1000 ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-          }`}
-        >
-          <h2 id="services-heading" className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Our Technology Services
+    <section id="services" className="py-20 bg-gray-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <Badge variant="outline" className="mb-4 text-blue-600 border-blue-600">
+            Our Services
+          </Badge>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            Comprehensive Technology Solutions
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We offer comprehensive technology solutions designed to transform your business and drive sustainable growth
-            in today's competitive landscape.
+            From concept to deployment, we provide end-to-end technology services that drive innovation and growth for
+            your business.
           </p>
-        </header>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" role="list">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {services.map((service, index) => {
             const IconComponent = service.icon
             return (
               <Card
                 key={index}
-                className={`group hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 border-0 shadow-lg ${
-                  isVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
+                className={`group relative overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2 ${
+                  service.featured ? "ring-2 ring-blue-500 ring-opacity-50" : ""
                 }`}
-                style={{
-                  transitionDelay: isVisible ? `${index * 100}ms` : "0ms",
-                }}
-                role="listitem"
               >
-                <CardContent className="p-8 text-center">
+                {service.featured && <Badge className="absolute top-4 right-4 bg-blue-600 text-white">Popular</Badge>}
+
+                <CardHeader className="pb-4">
                   <div
-                    className={`w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r ${service.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
-                    aria-hidden="true"
+                    className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 transition-colors duration-300 ${
+                      service.featured
+                        ? "bg-blue-600 text-white"
+                        : "bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white"
+                    }`}
                   >
-                    <IconComponent className="h-8 w-8 text-white" />
+                    <IconComponent className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">{service.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                  <CardTitle className="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                    {service.title}
+                  </CardTitle>
+                  <CardDescription className="text-gray-600">{service.description}</CardDescription>
+                </CardHeader>
+
+                <CardContent>
+                  <ul className="space-y-2 mb-6">
+                    {service.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-center text-sm text-gray-600">
+                        <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Button
+                    variant="outline"
+                    className="w-full group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-300 bg-transparent"
+                    onClick={() => scrollToSection("#contact")}
+                  >
+                    Learn More
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
                 </CardContent>
               </Card>
             )
           })}
+        </div>
+
+        <div className="text-center">
+          <p className="text-lg text-gray-600 mb-8">
+            Need a custom solution? We're here to help you build exactly what your business needs.
+          </p>
+          <Button
+            size="lg"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            onClick={() => scrollToSection("#contact")}
+          >
+            Get Custom Quote
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
         </div>
       </div>
     </section>

@@ -1,130 +1,153 @@
 "use client"
 
-import { Users, Award, Globe, TrendingUp } from "lucide-react"
-import { useEffect, useRef, useState } from "react"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Users, Award, Globe, TrendingUp, ArrowRight, CheckCircle } from "lucide-react"
 
 export function About() {
-  const [isVisible, setIsVisible] = useState(false)
-  const [counts, setCounts] = useState({ clients: 0, experience: 0, countries: 0, success: 0 })
-  const sectionRef = useRef<HTMLElement>(null)
-
   const stats = [
-    { icon: Users, value: 500, suffix: "+", label: "Happy Clients", key: "clients" },
-    { icon: Award, value: 15, suffix: "+", label: "Years Experience", key: "experience" },
-    { icon: Globe, value: 25, suffix: "+", label: "Countries Served", key: "countries" },
-    { icon: TrendingUp, value: 98, suffix: "%", label: "Success Rate", key: "success" },
+    { icon: Users, label: "Happy Clients", value: "500+", color: "text-blue-600" },
+    { icon: Award, label: "Projects Completed", value: "1000+", color: "text-green-600" },
+    { icon: Globe, label: "Countries Served", value: "25+", color: "text-purple-600" },
+    { icon: TrendingUp, label: "Years Experience", value: "15+", color: "text-orange-600" },
   ]
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.3 },
-    )
+  const values = [
+    {
+      title: "Innovation",
+      description: "We stay ahead of technology trends to deliver cutting-edge solutions.",
+    },
+    {
+      title: "Quality",
+      description: "Every project meets the highest standards of excellence and reliability.",
+    },
+    {
+      title: "Partnership",
+      description: "We work closely with clients as trusted partners in their success.",
+    },
+    {
+      title: "Results",
+      description: "Our focus is on delivering measurable business outcomes and ROI.",
+    },
+  ]
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
     }
-
-    return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
-    if (isVisible) {
-      stats.forEach((stat) => {
-        let start = 0
-        const end = stat.value
-        const duration = 2000
-        const increment = end / (duration / 16)
-
-        const timer = setInterval(() => {
-          start += increment
-          if (start >= end) {
-            setCounts((prev) => ({ ...prev, [stat.key]: end }))
-            clearInterval(timer)
-          } else {
-            setCounts((prev) => ({ ...prev, [stat.key]: Math.floor(start) }))
-          }
-        }, 16)
-      })
-    }
-  }, [isVisible])
+  }
 
   return (
-    <section ref={sectionRef} id="about" className="py-20 bg-white overflow-hidden" aria-labelledby="about-heading">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div
-            className={`transform transition-all duration-1000 ${
-              isVisible ? "translate-x-0 opacity-100" : "-translate-x-20 opacity-0"
-            }`}
-          >
-            <header>
-              <h2 id="about-heading" className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                About MSS Solutions
-              </h2>
-            </header>
-            <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-              With over 15 years of experience in the technology industry, MSS Solutions has been at the forefront of
-              digital transformation, helping businesses worldwide achieve their goals through innovative technology
-              solutions.
-            </p>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              Our team of expert developers, consultants, and strategists work collaboratively to deliver solutions that
-              not only meet your current needs but also position your business for future success.
-            </p>
+    <section id="about" className="py-20 bg-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <Badge variant="outline" className="mb-4 text-blue-600 border-blue-600">
+            About MSS
+          </Badge>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            Millennium Sourcing Solutions
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            For over 15 years, we've been helping businesses transform through technology. Our expertise spans across
+            industries, delivering solutions that drive growth and innovation.
+          </p>
+        </div>
 
-            <div className="grid grid-cols-2 gap-6" role="list" aria-label="Company statistics">
-              {stats.map((stat, index) => {
-                const IconComponent = stat.icon
-                return (
+        {/* Stats */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+          {stats.map((stat, index) => {
+            const IconComponent = stat.icon
+            return (
+              <Card
+                key={index}
+                className="text-center group hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              >
+                <CardContent className="p-6">
                   <div
-                    key={index}
-                    className={`text-center transform transition-all duration-1000 delay-${index * 200} ${
-                      isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-                    }`}
-                    role="listitem"
+                    className={`w-12 h-12 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
                   >
-                    <div
-                      className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center"
-                      aria-hidden="true"
-                    >
-                      <IconComponent className="h-6 w-6 text-white" />
-                    </div>
-                    <div className="text-3xl font-bold text-gray-900 mb-1" aria-live="polite">
-                      {counts[stat.key as keyof typeof counts]}
-                      {stat.suffix}
-                    </div>
-                    <div className="text-sm text-gray-600">{stat.label}</div>
+                    <IconComponent className={`h-6 w-6 ${stat.color}`} />
                   </div>
-                )
-              })}
+                  <div className="text-3xl font-bold text-gray-900 mb-2">{stat.value}</div>
+                  <div className="text-gray-600 font-medium">{stat.label}</div>
+                </CardContent>
+              </Card>
+            )
+          })}
+        </div>
+
+        {/* Content Grid */}
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+          {/* Left Column - Story */}
+          <div>
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Our Story</h3>
+            <div className="space-y-4 text-gray-600 leading-relaxed">
+              <p>
+                Founded in 2008, Millennium Sourcing Solutions began with a simple mission: to bridge the gap between
+                business needs and technology solutions. What started as a small team of passionate developers has grown
+                into a comprehensive technology partner serving clients worldwide.
+              </p>
+              <p>
+                Today, we combine deep technical expertise with industry knowledge to deliver solutions that not only
+                meet current needs but anticipate future challenges. Our team of experts works across multiple domains,
+                ensuring we can handle projects of any scale and complexity.
+              </p>
+              <p>
+                We believe in building long-term partnerships with our clients, understanding their unique challenges,
+                and delivering solutions that drive real business value.
+              </p>
+            </div>
+
+            <div className="mt-8">
+              <Button
+                size="lg"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                onClick={() => scrollToSection("#contact")}
+              >
+                Work With Us
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
             </div>
           </div>
 
-          <div
-            className={`relative transform transition-all duration-1000 delay-300 ${
-              isVisible ? "translate-x-0 opacity-100" : "translate-x-20 opacity-0"
-            }`}
-          >
-            <div className="aspect-square bg-gradient-to-br from-blue-100 to-cyan-100 rounded-3xl p-8 flex items-center justify-center">
-              <div className="w-full h-full bg-white rounded-2xl shadow-xl flex items-center justify-center">
-                <div className="text-center">
-                  <div
-                    className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full flex items-center justify-center"
-                    aria-hidden="true"
-                  >
-                    <span className="text-white font-bold text-3xl">MSS</span>
+          {/* Right Column - Values */}
+          <div>
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Our Values</h3>
+            <div className="space-y-6">
+              {values.map((value, index) => (
+                <div key={index} className="flex items-start space-x-4">
+                  <div className="flex-shrink-0">
+                    <CheckCircle className="h-6 w-6 text-green-500 mt-1" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Innovation Driven</h3>
-                  <p className="text-gray-600">Transforming businesses through technology</p>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">{value.title}</h4>
+                    <p className="text-gray-600">{value.description}</p>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
+        </div>
+
+        {/* Mission Statement */}
+        <div className="bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl p-8 sm:p-12 text-center text-white">
+          <h3 className="text-2xl sm:text-3xl font-bold mb-4">Our Mission</h3>
+          <p className="text-lg sm:text-xl leading-relaxed max-w-4xl mx-auto mb-8">
+            To empower businesses with innovative technology solutions that drive growth, efficiency, and competitive
+            advantage in an ever-evolving digital landscape.
+          </p>
+          <Button
+            variant="outline"
+            size="lg"
+            className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 bg-transparent"
+            onClick={() => scrollToSection("#services")}
+          >
+            Explore Our Services
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
         </div>
       </div>
     </section>
